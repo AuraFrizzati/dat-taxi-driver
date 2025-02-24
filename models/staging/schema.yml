@@ -4,7 +4,6 @@ sources:
   - name: staging
     database: data-eng-week3-af
     schema: trips_data_only2
-  
-  - tables:
+    tables:
     - name: green_trip_data
     - name: yellow_trip_data

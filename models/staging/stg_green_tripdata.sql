@@ -7,6 +7,7 @@ source as (
 ,renamed as (
 
     select 
+        {{ dbt_utils.generate_surrogate_key(['vendor_id', 'pickup_datetime']) }} as tripid,
         vendor_id AS vendorid,
         pickup_datetime AS lpep_pickup_datetime,
         dropoff_datetime AS lpep_dropoff_datetime,
@@ -24,7 +25,6 @@ source as (
         total_amount,
         payment_type,
         {{ get_payment_type_description('payment_type') }} as payment_type_description,
-        --coalesce(cast(cast(payment_type as float64) as int64), 0)  as payment_type_int,
         distance_between_service,
         time_between_service,
         trip_type,
